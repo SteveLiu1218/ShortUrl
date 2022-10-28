@@ -1,1 +1,9 @@
-<p>short-url-form works!</p>
+<div>
+  <form (ngSubmit)="Save(formShorter)" [formGroup]="formShorter">
+    <p> Original Url</p>
+    <input name="longUrl" type="url" pInputText placeholder="your Url" formControlName="longUrl" />
+    <p> Short Url</p>
+    <input name="shortUrl" type="url" pInputText formControlName="shortUrl" />
+    <p-button type="submit" label="Submit"></p-button>
+  </form>
+</div>
