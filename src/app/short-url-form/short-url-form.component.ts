@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { UrlModel } from '../Model/UrlModel'; { }
+
 import {
   FormBuilder,
   NgForm,
@@ -21,7 +21,7 @@ export class ShortUrlFormComponent implements OnInit {
     "((http|https)://)(www.)?" +
     "[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]" +
     "{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)";
-  @Input() urlModel?: UrlModel;
+
   constructor(public fb: FormBuilder) { }
 
   ngOnInit(): void {
