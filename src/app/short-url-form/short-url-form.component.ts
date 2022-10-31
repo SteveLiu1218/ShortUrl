@@ -9,6 +9,7 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
+import { BitlyService } from '../Service/bitly.service';
 
 @Component({
   selector: 'app-short-url-form',
@@ -22,7 +23,8 @@ export class ShortUrlFormComponent implements OnInit {
     "[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]" +
     "{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)";
 
-  constructor(public fb: FormBuilder) { }
+  constructor(public fb: FormBuilder,
+    public bitly: BitlyService) { }
 
   ngOnInit(): void {
     this.formShorter = this.fb.group({      //FormGroup
@@ -31,6 +33,14 @@ export class ShortUrlFormComponent implements OnInit {
     });
   }
   Save(form: FormGroup): void {
-    console.log(form.value["longUrl"]);
+    if (form.valid) {
+      //Call Bitty API
+      this.bitly.shortUrl(form.value["longUrl"]).subscribe(
+        (l) => {
+          this.formShorter.patchValue({ shortUrl: l.link })
+        }
+      )
+
+    }
   }
 }
