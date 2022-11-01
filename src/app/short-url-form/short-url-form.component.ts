@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+//複製功能
+import { Clipboard } from '@angular/cdk/clipboard';
 
 import {
   FormBuilder,
@@ -25,7 +27,8 @@ export class ShortUrlFormComponent implements OnInit {
     "{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)";
 
   constructor(public fb: FormBuilder,
-    public bitly: BitlyService) { }
+    public bitly: BitlyService,
+    private clipboard: Clipboard) { }
 
   ngOnInit(): void {
     //定義接到的form 的 Schema
@@ -48,6 +51,10 @@ export class ShortUrlFormComponent implements OnInit {
         }
       )
     }
+  }
+  SetCopy(): void {
+    this.clipboard.copy(this.formShorter.get('shortUrl')?.value);
+    //console.log(this.formShorter.get('shortUrl')?.value);
   }
   //取form 整個的方法 //console.log(this.accountControl.value) 可驗證
   get accountControl(): FormControl {

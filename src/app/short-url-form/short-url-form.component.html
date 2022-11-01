@@ -6,6 +6,9 @@
     <input type="url" pInputText placeholder="your Url" formControlName="longUrl" />
     <p> Short Url</p>
     <input type="url" pInputText formControlName="shortUrl" />
-    <p-button type="submit" label="Submit"></p-button>
+    <p></p>
+    <p-button icon="pi pi-check" iconPos="left" type="submit" label="Submit"></p-button>
+    <p></p>
+    <p-button icon="pi pi-save" label="Copy" (click)="SetCopy()"></p-button>
   </form>
 </div>
